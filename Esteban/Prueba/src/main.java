@@ -24,7 +24,6 @@ public class main
 		int cont=0;
 		boolean salir=false;
 		String salida="";
-		//System.out.println(expresionregular);
 		if(expresionregular.substring(0,1).compareTo("(")==0)
 		{
 			expresionregular=expresionregular.substring(1);
@@ -35,8 +34,6 @@ public class main
 
 			while(!salir)
 			{
-				//System.out.println(expresionregular);
-				
 				if(expresionregular.compareTo(")")==0)
 				{
 					double numero=(Math.random()*3)+1;
@@ -51,19 +48,48 @@ public class main
 					
 					if(expresionregular.substring(0,1).compareTo(")")==0)//Hay que hacer Clean del parentesis
 					{
-						//System.out.println("Entre a clean");
 						String resultadoClean=CleanParentesis(variable1,variable2,variable3);
-						//System.out.println(resultadoClean);
 						salida+=resultadoClean;
 						salir=true;
 					}
 					else//Hay que encontrar las variables
 					{
-						//System.out.println("Entre aqui con "+expresionregular.substring(0,1));
 						
 						if(expresionregular.substring(0,1).compareTo("+")==0)//encuentra una suma
 						{
 							expresionregular=expresionregular.substring(1);
+						}
+						else if (expresionregular.substring(0,1).compareTo("(")==0)//encuentra un parentesis
+						{
+							boolean salidelparentesis=false;
+							String resultadoparentesis="";
+							while(!salidelparentesis)
+							{
+								if(expresionregular.substring(0,1).compareTo(")")==0)//Se termina el parentesis
+								{
+									salidelparentesis=true;
+									if(expresionregular.substring(1,2).compareTo("*")==0)//El parentesis encontrado tiene Clean
+									{
+										resultadoparentesis+=expresionregular.substring(0,2);
+										expresionregular=expresionregular.substring(2);
+									}
+									else//El parentesis no tiene Clean
+									{
+										resultadoparentesis+=expresionregular.substring(0,1);
+										expresionregular=expresionregular.substring(1);
+									}
+								}
+								else//No encontre el final y sigo buscando 
+								{
+									resultadoparentesis+=expresionregular.substring(0,1);
+									expresionregular=expresionregular.substring(1);
+								}
+							}// la variable esta guardada en resultadoparentesis hay que encontrar cual variable esta vacia
+							boolean variableclean=false;
+							if(resultadoparentesis.substring(resultadoparentesis.length()-1).compareTo("*")==0) {variableclean=true;}//detecta si la variable tiene clean
+							if(variable1.compareTo("")==0) { variable1=resultadoparentesis; }
+							else if(variable2.compareTo("")==0) { variable2=resultadoparentesis; }
+							else if(variable3.compareTo("")==0){variable3=resultadoparentesis;}
 						}
 						else//encuentra una variable
 						{
@@ -81,7 +107,6 @@ public class main
 									variable1=expresionregular.substring(0,1);
 									expresionregular=expresionregular.substring(1);
 								}
-								//System.out.println("1 "+variable1);
 							}
 							else if(variable2.compareTo("")==0)
 							{
@@ -95,7 +120,6 @@ public class main
 									variable2=expresionregular.substring(0,1);
 									expresionregular=expresionregular.substring(1);
 								}
-								//System.out.println("2 "+variable2);
 							}
 							else if(variable3.compareTo("")==0)
 							{
@@ -109,13 +133,10 @@ public class main
 									variable3=expresionregular.substring(0,1);
 									expresionregular=expresionregular.substring(1);
 								}
-
-								//System.out.println("3 "+variable3);
 							}
 						}
 					}
 				}
-				//System.out.println(expresionregular);
 			}
 		}
 
@@ -145,7 +166,11 @@ public class main
 		{
 			resultado=variable1;
 		}
-		if(resultado.length()>1) // si es mayor que uno es clean
+		if(resultado.substring(0,1).compareTo("(")==0) // si empieza con ( es parentesis
+		{
+			resultado=lectorERunParentesis(resultado);
+		}
+		else if(resultado.substring(resultado.length()-1).compareTo("*")==0)//Si la variable tiene Clean
 		{
 			resultado=CleanSimple(resultado);
 		}
@@ -311,7 +336,6 @@ public class main
 			String variable3,String variable4,String variable5,String variable6,int escogido)
 	{
 		String resultado="";
-		
 		if(escogido==6)
 		{
 			if(variable6.compareTo("")==0)
@@ -400,7 +424,18 @@ public class main
 			}
 			resultado=variable2;
 		}
-		else if (esco)
+		else if (escogido==1)
+		{
+			if(esParentesis(variable1))
+			{
+				variable1=lectorERunParentesis(variable1);
+			}
+			else if(variable1.substring(variable1.length()-1).compareTo("*")==0)
+			{
+				variable1=CleanSimple(variable1);
+			}
+			resultado=variable1;
+		}
 		return resultado;
 	}
 	public static boolean esParentesis(String variable)
