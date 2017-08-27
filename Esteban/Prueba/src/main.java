@@ -7,7 +7,7 @@ public class main
 		// TODO Auto-generated method stub
 		String hola="holadfdwe";
 		System.out.println(hola.substring(hola.length()-1));
-		lectorERunParentesis("(h+b*+8*)*");
+		lectorERunParentesis("((h+b)*8*)");
 		lectorERunParentesis("(h+b*+8*)*");
 		lectorERunParentesis("(h+b*+8*)*");
 		lectorERunParentesis("(h+b*+8*)*");
@@ -350,14 +350,57 @@ public class main
 				resultado=variable5;
 			}
 		}
-		else if(escogido==1)
+		else if(escogido==4)
 		{
-			resultado=variable1;
+			if(variable4.compareTo("")==0)
+			{
+				SumaVariablesYParentesis(variable1,variable2,variable3,variable4,variable5,variable6,escogido-1);
+			}
+			else
+			{
+				if(esParentesis(variable4))
+				{
+					variable4=lectorERunParentesis(variable4);
+				}
+				else if(variable4.substring(variable4.length()-1).compareTo("*")==0)
+				{
+					variable4=CleanSimple(variable4);
+				}
+				resultado=variable4;
+			}
 		}
-		if(resultado.length()>1) // si es mayor que uno es clean
+		else if(escogido==3)
 		{
-			resultado=CleanSimple(resultado);
+			if(variable3.compareTo("")==0)
+			{
+				SumaVariablesYParentesis(variable1,variable2,variable3,variable4,variable5,variable6,escogido-1);
+			}
+			else
+			{
+				if(esParentesis(variable3))
+				{
+					variable3=lectorERunParentesis(variable3);
+				}
+				else if(variable3.substring(variable3.length()-1).compareTo("*")==0)
+				{
+					variable3=CleanSimple(variable3);
+				}
+				resultado=variable3;
+			}
 		}
+		else if (escogido==2)
+		{
+			if(esParentesis(variable2))
+			{
+				variable2=lectorERunParentesis(variable2);
+			}
+			else if(variable2.substring(variable2.length()-1).compareTo("*")==0)
+			{
+				variable2=CleanSimple(variable2);
+			}
+			resultado=variable2;
+		}
+		else if (esco)
 		return resultado;
 	}
 	public static boolean esParentesis(String variable)
