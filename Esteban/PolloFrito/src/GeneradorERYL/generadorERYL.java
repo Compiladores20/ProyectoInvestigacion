@@ -6,7 +6,7 @@ public class generadorERYL {
 	{
 		// TODO Auto-generated method stub
 		String hola="a+b";
-		System.out.println(dividirPorParentesis("a"));
+		System.out.println(dividirPorParentesis("a(a+b)b"));
 		//System.out.println(generadorLenguajes(hola));
 
 	}
@@ -103,7 +103,7 @@ public class generadorERYL {
 		String resultado = "";
 		double numero=(Math.random()*6)+1;
 		int escogido=(int)numero;
-		System.out.println("escogido:"+escogido+" 1:"+variable1+" 2:"+variable2+" 3:"+variable3+" 4:"+variable4);
+		//System.out.println("escogido:"+escogido+" 1:"+variable1+" 2:"+variable2+" 3:"+variable3+" 4:"+variable4);
 		if(escogido==6)
 		{
 			if(variable6.compareTo("")==0)
@@ -156,7 +156,7 @@ public class generadorERYL {
 		{
 			resultado=variable1;
 		}
-		System.out.println("resultado"+resultado);
+		//System.out.println("resultado"+resultado);
 		return resultado;
 	}
 	public static String CleanSimple(String variable)
@@ -174,7 +174,7 @@ public class generadorERYL {
 	}
 	public static String dividirPorParentesis(String expresionregular)
 	{
-		System.out.println("lo que llega a dividir parentesis :"+expresionregular);
+		//System.out.println("lo que llega a dividir parentesis :"+expresionregular);
 		String resultado="";
 		String variable1="";
 		String variable2="";
@@ -186,7 +186,7 @@ public class generadorERYL {
 		expresionregular+="#";
 		while(expresionregular.compareTo("#")!=0)
 		{
-			System.out.println("Expresion regular en el while:"+expresionregular);
+			//System.out.println("Expresion regular en el while:"+expresionregular);
 			if(expresionregular.substring(0,1).compareTo("(")==0)
 			{
 				if(variable.compareTo("")==0)
@@ -226,10 +226,10 @@ public class generadorERYL {
 				expresionregular=expresionregular.substring(1);
 			}
 		}
-		System.out.println(variable1+"holi");
+		//System.out.println(variable+"holi");
 		if(variable1.compareTo("")==0)
 		{
-			variable1=aplicarVariable(variable);
+			resultado=aplicarVariable(variable);
 		}
 		else
 		{
@@ -244,7 +244,7 @@ public class generadorERYL {
 	}
 	public static String aplicarVariable(String expresionregular)
 	{
-		System.out.println("lo que llega a aplicar variable: "+expresionregular);
+		//System.out.println("lo que llega a aplicar variable: "+expresionregular);
 		String resultado="";
 		if(expresionregular.compareTo("")==0) {}
 		else if(expresionregular.substring(0,1).compareTo("(")==0)//Parentesis, bo estoy revisando si el parentesis tiene Clean
@@ -256,9 +256,9 @@ public class generadorERYL {
 			}
 			else
 			{
-				System.out.println("entre a parentesis sin clean");
+				//System.out.println("entre a parentesis sin clean");
 				resultado=generadorLenguajes(expresionregular.substring(1,expresionregular.length()-1));
-				System.out.println("despues de sumar me da:"+resultado);
+				//System.out.println("despues de sumar me da:"+resultado);
 			}
 		}
 		else if(expresionregular.substring(expresionregular.length()-1).compareTo("*")==0) //Es clean
@@ -269,6 +269,7 @@ public class generadorERYL {
 		{
 			resultado=expresionregular;
 		}
+		//System.out.println(resultado+"resultado de aplicar");
 		return resultado;
 	}
 	public static String CleanParentesis(String expresionregular)
