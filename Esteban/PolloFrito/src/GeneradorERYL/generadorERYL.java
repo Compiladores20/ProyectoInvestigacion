@@ -6,7 +6,7 @@ public class generadorERYL {
 	{
 		// TODO Auto-generated method stub
 		String hola="a+b";
-		System.out.println(generadorLenguajes("a(a+b)*b*+a*"));
+		System.out.println(generadorLenguajes("a(ab)*"));
 		//System.out.println(generadorLenguajes(hola));
 
 	}
@@ -29,13 +29,12 @@ public class generadorERYL {
 				
 				while(expresionregular.substring(0,1).compareTo(")")!=0)
 				{
-					//System.out.println(expresionregular+":expresion regular en generadorLenguajes");
-					//System.out.println("entre");
+					System.out.println(expresionregular.substring(0,1)+":expresion regular en while que termina en )");
 					variable+=expresionregular.substring(0,1);
 					expresionregular=expresionregular.substring(1);
 				}
-				//System.out.println(expresionregular+":expresion regular en generadorLenguajes3");
 				variable+=expresionregular.substring(0,1);
+				System.out.println(variable+":variable");
 				expresionregular=expresionregular.substring(1);//para eliminar el )
 				//System.out.println(expresionregular+":expresion regular en generadorLenguajes4");
 				if(expresionregular.compareTo("#")==0)
@@ -79,6 +78,7 @@ public class generadorERYL {
 			}
 				
 		}
+		System.out.println(variable2+"       ho");
 		if (variable2.compareTo("")!=0)//Tengo certeza que hay una suma
 		{
 			resultado=aplicarSuma(variable1,variable2,variable3,variable4,variable5,variable6);
@@ -92,7 +92,7 @@ public class generadorERYL {
 			resultado=dividirPorParentesis(resultado);
 		}
 		if(resultado.compareTo("")==0) {}
-		else if(resultado.substring(resultado.length()-1).compareTo("*")==0)
+		else if(detectorClean(resultado))
 		{
 			resultado=aplicarVariable(resultado);
 		}
@@ -262,7 +262,7 @@ public class generadorERYL {
 	}
 	public static String aplicarVariable(String expresionregular)
 	{
-		//System.out.println("lo que llega a aplicar variable: "+expresionregular);
+		System.out.println("lo que llega a aplicar variable: "+expresionregular);
 		String resultado="";
 		if(expresionregular.compareTo("")==0) {}
 		else if(expresionregular.substring(0,1).compareTo("(")==0)//Parentesis, bo estoy revisando si el parentesis tiene Clean
@@ -285,7 +285,19 @@ public class generadorERYL {
 		}
 		else
 		{
-			resultado=expresionregular;
+			if(detectorparentesis(expresionregular))
+			{
+				resultado=dividirPorParentesis(expresionregular);
+			}
+			else if(detectorClean(expresionregular))
+			{
+				resultado=CleanAtravesado(expresionregular);
+			}
+			else
+			{
+				resultado=expresionregular;
+			}
+			
 		}
 		//System.out.println(resultado+"resultado de aplicar");
 		return resultado;
@@ -313,5 +325,49 @@ public class generadorERYL {
 			expresionregular=expresionregular.substring(1);
 		}
 		return parentesis;
+	}
+	public static boolean detectorClean(String expresionregular)
+	{
+		boolean clean=false;
+		expresionregular+="#";
+		while(expresionregular.compareTo("#")!=0)
+		{
+			if(expresionregular.substring(0,1).compareTo("*")==0)
+			{
+				clean=true;
+			}
+			expresionregular=expresionregular.substring(1);
+		}
+		return clean;
+	}
+	public static String CleanAtravesado(String expresionregular)
+	{
+		String resultado="";
+		while(expresionregular.compareTo("")!=0)
+		{
+			System.out.println(resultado+"resultado");
+			if(expresionregular.length()>1)
+			{
+				System.out.println(resultado+"resultado");
+				if(expresionregular.substring(1,2).compareTo("*")==0)
+				{
+					resultado+=CleanSimple(expresionregular.substring(0,2));
+					expresionregular=expresionregular.substring(2);
+				}
+				else
+				{
+					resultado+=expresionregular.substring(0,1);
+					expresionregular=expresionregular.substring(1);
+				}
+			}
+			else
+			{
+				System.out.println(expresionregular+"resultado");
+				resultado+=expresionregular.substring(0,1);
+				expresionregular=expresionregular.substring(1);
+			}
+		}
+		System.out.println(resultado+"resultado");
+		return resultado;
 	}
 }
