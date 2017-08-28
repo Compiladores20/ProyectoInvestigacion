@@ -6,7 +6,7 @@ public class generadorERYL {
 	{
 		// TODO Auto-generated method stub
 		String hola="a+b";
-		System.out.println(aplicarVariable("(a+b)*"));
+		System.out.println(dividirPorParentesis("a"));
 		//System.out.println(generadorLenguajes(hola));
 
 	}
@@ -187,7 +187,6 @@ public class generadorERYL {
 		while(expresionregular.compareTo("#")!=0)
 		{
 			System.out.println("Expresion regular en el while:"+expresionregular);
-			System.out.println(expresionregular.substring(1,2));
 			if(expresionregular.substring(0,1).compareTo("(")==0)
 			{
 				if(variable.compareTo("")==0)
@@ -204,7 +203,7 @@ public class generadorERYL {
 					else if(variable5.compareTo("")==0) {variable5=variable;}
 					else if(variable6.compareTo("")==0) {variable6=variable;}
 					//expresionregular=expresionregular.substring(1);
-					variable="";
+					variable=expresionregular.substring(0,1);
 					expresionregular=expresionregular.substring(1);
 				}
 			}
