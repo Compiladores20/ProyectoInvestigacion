@@ -6,7 +6,7 @@ public class generadorERYL {
 	{
 		// TODO Auto-generated method stub
 		String hola="a+b";
-		System.out.println(dividirPorParentesis("a(a+b)b"));
+		System.out.println(dividirPorParentesis("a(a+b)*b*"));
 		//System.out.println(generadorLenguajes(hola));
 
 	}
@@ -209,7 +209,16 @@ public class generadorERYL {
 			}
 			else if(expresionregular.substring(0,1).compareTo(")")==0)
 			{
-				variable+=expresionregular.substring(0,1);
+				if (expresionregular.substring(1,2).compareTo("*")==0)
+				{
+					variable+=expresionregular.substring(0,2);
+					expresionregular=expresionregular.substring(2);
+				}
+				else
+				{
+					variable+=expresionregular.substring(0,1);
+					expresionregular=expresionregular.substring(1);
+				}
 				if(variable1.compareTo("")==0) {variable1=variable;}
 				else if(variable2.compareTo("")==0) {variable2=variable;}
 				else if(variable3.compareTo("")==0) {variable3=variable;}
@@ -218,7 +227,6 @@ public class generadorERYL {
 				else if(variable6.compareTo("")==0) {variable6=variable;}
 				//expresionregular=expresionregular.substring(1);
 				variable="";
-				expresionregular=expresionregular.substring(1);
 			}
 			else
 			{
@@ -226,7 +234,17 @@ public class generadorERYL {
 				expresionregular=expresionregular.substring(1);
 			}
 		}
-		//System.out.println(variable+"holi");
+		
+		if (variable.compareTo("")!=0)
+		{
+			if(variable1.compareTo("")==0) {variable1=variable;}
+			else if(variable2.compareTo("")==0) {variable2=variable;}
+			else if(variable3.compareTo("")==0) {variable3=variable;}
+			else if(variable4.compareTo("")==0) {variable4=variable;}
+			else if(variable5.compareTo("")==0) {variable5=variable;}
+			else if(variable6.compareTo("")==0) {variable6=variable;}
+		}
+		System.out.println(variable3+"holi");
 		if(variable1.compareTo("")==0)
 		{
 			resultado=aplicarVariable(variable);
