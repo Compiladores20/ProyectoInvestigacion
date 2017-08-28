@@ -6,7 +6,7 @@ public class generadorERYL {
 	{
 		// TODO Auto-generated method stub
 		String hola="a+b";
-		System.out.println(dividirPorParentesis("a(a+b)*b*"));
+		System.out.println(generadorLenguajes("a(a+b)*b*+a*"));
 		//System.out.println(generadorLenguajes(hola));
 
 	}
@@ -244,7 +244,7 @@ public class generadorERYL {
 			else if(variable5.compareTo("")==0) {variable5=variable;}
 			else if(variable6.compareTo("")==0) {variable6=variable;}
 		}
-		System.out.println(variable3+"holi");
+		//System.out.println(variable3+"holi");
 		if(variable1.compareTo("")==0)
 		{
 			resultado=aplicarVariable(variable);
