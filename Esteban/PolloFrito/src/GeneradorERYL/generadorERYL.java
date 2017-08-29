@@ -6,11 +6,9 @@ public class generadorERYL {
 	{
 		// TODO Auto-generated method stub
 		String hola="a+b";
-		String[] arrayhola=new String[10];
-		arrayhola[0]="hola";
-		arrayhola[1]="adios";;
+		String[] arrayhola= {"hola","adios"};
 		String prueba="as#asd#fds#fds#";
-		System.out.println(recortadorString2(prueba,"#",1));
+		System.out.println(arrayhola[1]);
 		System.out.println(generarNlenguajes(5,"(a+b)"));
 		//System.out.println(generadorLenguajes(hola));
 
@@ -454,5 +452,152 @@ public class generadorERYL {
 			
 		}
 		return "#"+string.substring(0,cont2-1);
+	}
+	public static String generadorExpresionesRegulares(int dificultad)
+	{
+		String[] variablesexpresiones={"a","b","c","d","e"};
+		double numero=(Math.random()*5);
+		int escogido=(int)numero;
+		if(dificultad==1)
+		{
+			String 
+		}
+	}
+	public static String ramdonExpresion(int dificultad)
+	{
+		/*
+		a 0-5
+		a* 6-10
+		(2) 11-16
+		(2)*17-19
+		(3) 20-24
+		(3)*25-29
+		*/
+		String resultado="";
+		if (dificultad==1)
+		{
+			resultado=posiblenada(1)+sumaRandom(1)+posiblenada(1)+sumaRandom(1)+posiblenada(1)
+			+sumaRandom(1)+posiblenada(1);
+		}
+		else if (dificultad==2)
+		{
+			resultado=posiblenada(2)+sumaRandom(2)+posiblenada(2)+sumaRandom(2)+posiblenada(2)
+			+sumaRandom(2)+posiblenada(2)+sumaRandom(2)+posiblenada(2);
+		}
+		else if (dificultad==3)
+		{
+			resultado=posiblenada(3)+sumaRandom(3)+posiblenada(3)+sumaRandom(3)+posiblenada(3)
+			+sumaRandom(3)+posiblenada(3)+sumaRandom(3)+posiblenada(3);
+		}
+		return resultado;
+	}
+	public static string posiblenada(int dificultad)
+	{
+		String resultado="";
+		if(dificultad==1)
+		{
+			double numero=(Math.random()*3);
+			int escogido=(int)numero;
+			if(escogido==0){resultado=variableRandomPorNumero(numeroRandomPorDificultad(1));}
+		}
+		else if(dificultad==2)
+		{
+			double numero=(Math.random()*3);
+			int escogido=(int)numero;
+			if(escogido==0){resultado=variableRandomPorNumero(numeroRandomPorDificultad(2));}
+		}
+		else if(dificultad==3)
+		{
+			double numero=(Math.random()*2);
+			int escogido=(int)numero;
+			if(escogido==0){resultado=variableRandomPorNumero(numeroRandomPorDificultad(3));}
+		}
+		return resultado;
+	}
+	public static int numeroRandomPorDificultad(int dificultad)
+	{
+		if(dificultad==1)
+		{
+			double numero=(Math.random()*10);
+			int escogido=(int)numero;
+		}
+		else if(dificultad==2)
+		{
+			double numero=(Math.random()*19);
+			int escogido=(int)numero;
+		}
+		else if(dificultad==3)
+		{
+			double numero=(Math.random()*29);
+			int escogido=(int)numero;
+		}
+	}
+	public static String variableRandomPorNumero(int numero)
+	{
+		String resultado="";
+		String[] variablesexpresiones={"a","b","c","d","e"};
+		if((numero>-1)&&(numero<6))
+		{
+			resultado=variablesexpresiones[numero];
+		}
+		else if((numero>5)&&(numero<11))
+		{
+			numero=numero-5;
+			resultado=variablesexpresiones[numeroRandomPorDificultad]+"*";
+		}
+		else if((numero>10)&&(numero<17))
+		{
+			int numero1=numeroRandomPorDificultad(1);
+			int numero2=numeroRandomPorDificultad(1);
+			resultado="("+variablesexpresiones[numero1]+"+"+variablesexpresiones[numero2]+")";
+		}
+		else if((numero>16)&&(numero<20))
+		{
+			int numero1=numeroRandomPorDificultad(1);
+			int numero2=numeroRandomPorDificultad(1);
+			resultado="("+variablesexpresiones[numero1]+"+"+variablesexpresiones[numero2]+")*";
+		}
+		else if((numero>19)&&(numero<25))
+		{
+			int numero1=numeroRandomPorDificultad(1);
+			int numero2=numeroRandomPorDificultad(1);
+			int numero3=numeroRandomPorDificultad(1);
+			resultado="("+variablesexpresiones[numero1]+"+"
+			+variablesexpresiones[numero2]+"+"
+			+variablesexpresiones[numero3]+")";
+		}
+		else if((numero>24)&&(numero<30))
+		{
+			int numero1=numeroRandomPorDificultad(1);
+			int numero2=numeroRandomPorDificultad(1);
+			int numero3=numeroRandomPorDificultad(1);
+			resultado="("+variablesexpresiones[numero1]+"+"
+			+variablesexpresiones[numero2]+"+"
+			+variablesexpresiones[numero3]+")*";
+		}
+		return resultado;
+	}
+	public static String sumaRandom(int dificultad)
+	{
+		String resultado="";
+		if(dificultad==1)
+		{
+			double numero=(Math.random()*4);
+			int escogido=(int)numero;
+			if(escogido==0){resultado="+";}
+		}
+		else if(dificultad==2)
+		{
+			double numero=(Math.random()*3);
+			int escogido=(int)numero;
+			if(escogido==0){resultado="+";}
+		}
+		else if(dificultad==3)
+		{
+			double numero=(Math.random()*2);
+			int escogido=(int)numero;
+			if(escogido==0){resultado="+";}
+		}
+		return resultado;
 	}
 }
