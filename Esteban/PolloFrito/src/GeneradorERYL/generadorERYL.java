@@ -6,7 +6,12 @@ public class generadorERYL {
 	{
 		// TODO Auto-generated method stub
 		String hola="a+b";
-		System.out.println(generadorLenguajes("a(ab)*"));
+		String[] arrayhola=new String[10];
+		arrayhola[0]="hola";
+		arrayhola[1]="adios";;
+		String prueba="as#asd#fds#fds#";
+		System.out.println(recortadorString2(prueba,"#",1));
+		System.out.println(generarNlenguajes(5,"(a+b)"));
 		//System.out.println(generadorLenguajes(hola));
 
 	}
@@ -29,12 +34,12 @@ public class generadorERYL {
 				
 				while(expresionregular.substring(0,1).compareTo(")")!=0)
 				{
-					System.out.println(expresionregular.substring(0,1)+":expresion regular en while que termina en )");
+					//System.out.println(expresionregular.substring(0,1)+":expresion regular en while que termina en )");
 					variable+=expresionregular.substring(0,1);
 					expresionregular=expresionregular.substring(1);
 				}
 				variable+=expresionregular.substring(0,1);
-				System.out.println(variable+":variable");
+				//System.out.println(variable+":variable");
 				expresionregular=expresionregular.substring(1);//para eliminar el )
 				//System.out.println(expresionregular+":expresion regular en generadorLenguajes4");
 				if(expresionregular.compareTo("#")==0)
@@ -78,7 +83,7 @@ public class generadorERYL {
 			}
 				
 		}
-		System.out.println(variable2+"       ho");
+		//System.out.println(variable2+"       ho");
 		if (variable2.compareTo("")!=0)//Tengo certeza que hay una suma
 		{
 			resultado=aplicarSuma(variable1,variable2,variable3,variable4,variable5,variable6);
@@ -262,7 +267,7 @@ public class generadorERYL {
 	}
 	public static String aplicarVariable(String expresionregular)
 	{
-		System.out.println("lo que llega a aplicar variable: "+expresionregular);
+		//System.out.println("lo que llega a aplicar variable: "+expresionregular);
 		String resultado="";
 		if(expresionregular.compareTo("")==0) {}
 		else if(expresionregular.substring(0,1).compareTo("(")==0)//Parentesis, bo estoy revisando si el parentesis tiene Clean
@@ -345,10 +350,10 @@ public class generadorERYL {
 		String resultado="";
 		while(expresionregular.compareTo("")!=0)
 		{
-			System.out.println(resultado+"resultado");
+			//System.out.println(resultado+"resultado");
 			if(expresionregular.length()>1)
 			{
-				System.out.println(resultado+"resultado");
+				//System.out.println(resultado+"resultado");
 				if(expresionregular.substring(1,2).compareTo("*")==0)
 				{
 					resultado+=CleanSimple(expresionregular.substring(0,2));
@@ -362,12 +367,92 @@ public class generadorERYL {
 			}
 			else
 			{
-				System.out.println(expresionregular+"resultado");
+				//System.out.println(expresionregular+"resultado");
 				resultado+=expresionregular.substring(0,1);
 				expresionregular=expresionregular.substring(1);
 			}
 		}
-		System.out.println(resultado+"resultado");
+		//System.out.println(resultado+"resultado");
 		return resultado;
+	}
+	public static String generarNlenguajes(int N,String expresionregular)
+	{
+		String resultado="";
+		int Z=N;
+		N=30;
+		String[] lenguajes=new String[30];
+		lenguajes[0]=generadorLenguajes(expresionregular);
+		int contRevisados=0;
+		int contMI=0;
+		int contLenguajes=1;
+		String lenguaje="";
+		boolean nosepudocrearlenguaje=false;
+		while(N>0)
+		{
+			lenguaje=generadorLenguajes(expresionregular);
+			contMI=0;
+			contRevisados=0;
+			while((contRevisados<contLenguajes)&&(contMI<100))
+			{
+				if(detectorLenguajesIguales(lenguajes[contRevisados],lenguaje))
+				{
+					generadorLenguajes(expresionregular);
+					contMI++;
+					contRevisados=0;
+				}
+				else
+				{
+					contRevisados++;
+				}
+			}
+			if(contMI<100)
+			{
+				lenguajes[contRevisados]=lenguaje;
+				contLenguajes++;
+			}
+			N--;
+		}
+		for(int i=0;i<contLenguajes;i++)
+		{
+			resultado+=lenguajes[i]+"#";//System.out.println("lenguajes["+i+"]:"+lenguajes[i]);
+		}
+		return recortadorString2(resultado,"#",Z);
+	}
+	public static boolean detectorLenguajesIguales(String lenguaje0,String lenguaje1)
+	{
+		boolean soniguales=false;
+		if(lenguaje0.compareTo(lenguaje1)==0) {soniguales=true;}
+		return soniguales;
+	}
+	public static String recortadorString(String string,String split)
+	{
+		while(string.substring(0,1).compareTo(split)!=0)
+		{
+			string=string.substring(1);
+		}
+		return string.substring(1);
+	}
+	public static String recortadorString2(String string,String split,int numero)
+	{
+		int cont=0;
+		int cont2=0;
+		while(cont<numero)
+		{
+			if(cont2==string.length()-1)
+			{
+				cont=numero;
+			}
+			if((string.substring(cont2,cont2+1).compareTo(split)==0)&&(cont2<string.length()))
+			{
+				cont++;
+				cont2++;
+			}
+			else
+			{
+				cont2++;
+			}
+			
+		}
+		return "#"+string.substring(0,cont2-1);
 	}
 }
