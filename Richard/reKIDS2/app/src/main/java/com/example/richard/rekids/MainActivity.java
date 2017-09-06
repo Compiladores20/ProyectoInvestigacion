@@ -207,12 +207,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 previos.setBackgroundColor(Color.TRANSPARENT);
             }
             if(valor == 6){
+                int columnas = 6;
                 String string = "";
                 //metodo salvaje aparece
 
-                for (int x = 0;x < 6;x++){
+                //Esto cuenta los valore activados
+                for (int x = 0;x < columnas;x++){
+                    int contador = 0;
+                    for(int cont = 0; cont <3;cont++ ){
+                        if(array[cont][x] != 0){
+                            contador = contador + 1;
+                        }
+
+                    }
                     string += "(";
-                    for(int y = 0; y < 3 ; y++ ){
+                    for(int y = 0; y < contador ; y++ ){
 
                         if( array[y][x] == 1 ){
                             if(arrayDatos[y][x]==1){
@@ -227,12 +236,83 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             if(arrayDatos[y][x] == 4){
                                 string += "d";
                             }
-                            string += "+";
+                            if(y + 1 != contador ){
+                                string += "+";
+                            }
+                        }
+                        if(array[y][x] == 2){
+                            if(y == 0){
+                                string +="(";
+                            }else if(array[y-1][x] != 2){
+                                string +="(";
+                            }
+
+                            if(arrayDatos[y][x]==1){
+                                string += "a";
+                            }
+                            if(arrayDatos[y][x] == 2){
+                                string += "b";
+                            }
+                            if(arrayDatos[y][x] == 3){
+                                string += "c";
+                            }
+                            if(arrayDatos[y][x] == 4){
+                                string += "d";
+                            }
+
+                            if(y + 1 != contador ){
+                                if(array[y+1][x] != 2){
+                                    string += ")*";
+                                }
+                                string += "+";
+                            }else{
+                                string += ")*";
+                            }
+                        }
+
+
+
+
+                        //este es el metodo de los botones grises
+                        if(array[y][x] == 3){
+
+                            if(x - 1 < 0){
+                                string += "(";
+                            }else if(array[y][x-1]!= 3){
+                                string += "(";
+                            }
+
+                        if(arrayDatos[y][x]==1){
+                            string += "a";
+                        }
+                        if(arrayDatos[y][x] == 2){
+                            string += "b";
+                        }
+                        if(arrayDatos[y][x] == 3){
+                            string += "c";
+                        }
+                        if(arrayDatos[y][x] == 4){
+                            string += "d";
+                        }
+
+                        if(x+1 == columnas){
+                            string += ")*";
+                        }else if(array[y][x+1]!=3){
+                            string += ")*";
+                        }else{
+                            x+=1;
+                            y = y-1;
+                           }
                         }
 
                     }
                     string += ")";
                 }
+
+                // aqui falta el metodo de los grices
+
+
+
                 TextView txt = (TextView) findViewById(R.id.Salida);
                 txt.setText(string);
 
