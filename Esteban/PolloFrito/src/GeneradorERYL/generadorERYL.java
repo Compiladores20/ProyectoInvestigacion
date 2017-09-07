@@ -13,20 +13,62 @@ public class generadorERYL {
 		//System.out.println(parte2(1));
 		//System.out.println(parte2(2));
 		//System.out.println(parte2(3));
-		System.out.println(GeneradorExpresionesRegulares(3));
-		System.out.println(GeneradorExpresionesRegulares(3));
-		System.out.println(GeneradorExpresionesRegulares(3));
-		System.out.println(GeneradorExpresionesRegulares(3));
-		System.out.println(GeneradorExpresionesRegulares(3));
-
-		System.out.println(GeneradorExpresionesRegulares(3));
-		System.out.println(GeneradorExpresionesRegulares(3));
-		System.out.println(GeneradorExpresionesRegulares(3));
-		System.out.println(GeneradorExpresionesRegulares(3));
-		System.out.println(GeneradorExpresionesRegulares(3));
+		hola=GeneradorExpresionesRegulares(3);
+		System.out.println(GeneradorJuego3(1));
 		//System.out.println(generarNlenguajes(5,"(a+b)"));
 		//System.out.println(generadorLenguajes(hola));
 
+	}
+	public static String GeneradorJuego1(int dificultad)
+	{
+		String expresionregular=GeneradorExpresionesRegulares(dificultad);
+		int numerolenjuages=0;
+		if(dificultad==3) {numerolenjuages=10;}
+		else if(dificultad==2) {numerolenjuages=7;}
+		else if(dificultad==1) {numerolenjuages=5;}
+		return expresionregular+generarNlenguajes(numerolenjuages,expresionregular);
+	}
+	public static String GeneradorJuego2(String expresionregular)
+	{
+		return generarNlenguajes(5,expresionregular);
+	}
+	public static String GeneradorJuego3(int dificultad)
+	{
+		String resultado="";
+		String expresionregular=GeneradorExpresionesRegulares(dificultad);
+		double numero1=(Math.random()*2);
+		int verdaderoOfalso=(int)numero1;
+		resultado+=verdaderoOfalso+expresionregular;
+		if(verdaderoOfalso==0)
+		{
+			String expresionregularfalsa=GeneradorExpresionesRegulares(dificultad);
+			resultado+=lenguajesfalsos(expresionregular,expresionregularfalsa);
+		}
+		else if(verdaderoOfalso==1)
+		{
+			resultado+="#"+generadorLenguajes(expresionregular)+"#"+generadorLenguajes(expresionregular)+"#"+generadorLenguajes(expresionregular);
+		}
+		return resultado;
+	}
+	public static String lenguajesfalsos(String verdadero,String falso)
+	{
+		String resultado="";
+		int cont=0;
+		double numero1=(Math.random()*3);
+		int numerofalso=(int)numero1;
+		while(cont<3)
+		{
+			if(cont==numerofalso)
+			{
+				resultado+="#"+generadorLenguajes(falso);
+			}
+			else
+			{
+				resultado+="#"+generadorLenguajes(verdadero);
+			}
+			cont++;
+		}
+		return resultado;
 	}
 	public static String generadorLenguajes(String expresionregular)
 	{
@@ -180,13 +222,21 @@ public class generadorERYL {
 	public static String CleanSimple(String variable)
 	{
 		String resultado="";
-		int cont;
-		double numero=(Math.random()*5);
-		cont=(int)numero;
-		while(cont!=0)
+		//System.out.println("Clean simple:"+variable);
+		if(variable.length()>2)
 		{
-			resultado+=variable.substring(0,variable.length()-1);
-			cont--;
+			resultado=CleanAtravesado(variable);
+		}
+		else
+		{
+			int cont;
+			double numero=(Math.random()*5);
+			cont=(int)numero;
+			while(cont!=0)
+			{
+				resultado+=variable.substring(0,variable.length()-1);
+				cont--;
+			}
 		}
 		return resultado;
 	}
@@ -420,8 +470,11 @@ public class generadorERYL {
 			}
 			if(contMI<100)
 			{
-				lenguajes[contRevisados]=lenguaje;
-				contLenguajes++;
+				if (contRevisados<30)
+				{
+					lenguajes[contRevisados]=lenguaje;
+					contLenguajes++;
+				}
 			}
 			N--;
 		}
