@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         if(array[y][x] == 0){
                             contador = contador+1;
                         }
-                        if( array[y][x] == 1 ){
+                        if( (array[y][x] == 1) || (array[y][x]== 4)){
                             if(arrayDatos[y][x]==1){
                                 string += "a";
                             }
@@ -240,9 +240,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             if(arrayDatos[y][x] == 4){
                                 string += "d";
                             }
+                            if(array[y][x]== 4){
+                                string += "*";
+                            }
                             if(y + 1 != contador ){
                                 string += "+";
                             }
+
                         }
                         if(array[y][x] == 2){
                             if(y == 0){
