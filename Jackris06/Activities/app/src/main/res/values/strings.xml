@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Activities</string>
+    <string name="cadena1">Cadena1</string>
+    <string name="salir">Salir</string>
+    <string name="cadena2">Cadena2</string>
+    <string name="Hello">Hola_Mundo</string>
+</resources>

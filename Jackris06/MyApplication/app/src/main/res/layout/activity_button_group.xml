@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,15 +11,22 @@
     <TextView
         android:id="@+id/textView5"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.23"
-        android:text="Hola mundo" />
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="0.40"
+        android:text="Hola mundo"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
 
 
         <Button
@@ -53,9 +60,24 @@
         <Button
             android:id="@+id/btn4"
             android:layout_width="71dp"
-            android:layout_height="132dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:text="@string/btn4" />
 
     </LinearLayout>
-</LinearLayout>
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_above="@+id/linearLayout"
+        android:id = "@+id/GridKeyboard"
+        android:columnWidth="30dp"
+        android:numColumns="6"
+        android:verticalSpacing="4dp"
+        android:horizontalSpacing="4dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

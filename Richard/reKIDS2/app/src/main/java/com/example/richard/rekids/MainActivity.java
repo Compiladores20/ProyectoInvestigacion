@@ -345,7 +345,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             array[y][x] = 1;
             boton.setBackgroundColor(Color.TRANSPARENT);
         }
-
-
     }
+
+
+
 }
