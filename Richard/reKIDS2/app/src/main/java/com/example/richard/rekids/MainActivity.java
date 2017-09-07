@@ -207,6 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 previos.setBackgroundColor(Color.TRANSPARENT);
             }
             if(valor == 6){
+                int filas = 3;
                 int columnas = 6;
                 String string = "";
                 //metodo salvaje aparece
@@ -220,10 +221,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
 
                     }
-                    string += "(";
+                    if(contador != 0){
+                    string += "(";}
                     for(int y = 0; y < contador ; y++ ){
-
-                        if( array[y][x] == 1 ){
+                        if(array[y][x] == 0){
+                            contador = contador+1;
+                        }
+                        if( (array[y][x] == 1) || (array[y][x]== 4)){
                             if(arrayDatos[y][x]==1){
                                 string += "a";
                             }
@@ -236,9 +240,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             if(arrayDatos[y][x] == 4){
                                 string += "d";
                             }
+                            if(array[y][x]== 4){
+                                string += "*";
+                            }
                             if(y + 1 != contador ){
                                 string += "+";
                             }
+
                         }
                         if(array[y][x] == 2){
                             if(y == 0){
@@ -299,15 +307,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             string += ")*";
                         }else if(array[y][x+1]!=3){
                             string += ")*";
+                            if(y +1 != filas){
+                                int counter2 =0;
+                                for(int cont = y+1; cont <3;cont++ ){
+                                    if(array[cont][x] != 0){
+                                        counter2 = counter2 + 1;
+                                        System.out.println(counter2);
+                                    }
+                                }
+
+                                if(counter2>0){
+                                    string += "+";
+                                }
+                                contador = y+1+counter2;
+                            }
+
                         }else{
                             x+=1;
                             y = y-1;
                            }
                         }
 
+
                     }
-                    string += ")";
+                    if(contador != 0){
+                    string += ")";}
                 }
+
+
+                //aqui vamos a hacer el barrido de el string para eliminar parentesis vacios
+
+                //****************************************************************************************************
+     /*           char previo;
+                previo = string.charAt(0);
+                for(int valorString = 0; valorString <= string.length();valorString++){
+                    if(string.charAt(valorString)==')'){
+                        System.out.println("entra al bucle");
+                        if(previo=='('){
+
+                        }
+                    }
+
+                    previo = string.charAt(valorString);
+                }
+     */
 
                 // aqui falta el metodo de los grices
 
@@ -322,6 +365,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
+
 
     public void SelBoton(ImageButton boton,int x,int y){
         if(previos!= null && arrayDatos[yPrevios][xPrevios] == 0){
