@@ -364,6 +364,4 @@ public class Juego2 extends AppCompatActivity implements View.OnClickListener{
             boton.setBackgroundColor(Color.TRANSPARENT);
         }
     }
-
-
 }

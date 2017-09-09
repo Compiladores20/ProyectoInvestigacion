@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void Juego2(View view){
-        Intent i = new Intent(this,Juego2.class);
+        Intent i = new Intent(this,Juego_2.class);
         startActivity(i);
     }
 
