@@ -2,10 +2,7 @@ package com.example.leonel.menuactivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -13,11 +10,13 @@ import android.widget.TextView;
 
 public class Juego1 extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView _score;
+    private TextView _regex;
     private int score;
     private String GenREGEX;
     private String _regexp;
     private int dificultad;
+    private Button _btnhelp;
+    private TextView _tvscore;
 
     ImageButton imgBtnId00,imgBtnId01,imgBtnId02,imgBtnId03,imgBtnId04,imgBtnId05,
             imgBtnId10, imgBtnId11, imgBtnId12,imgBtnId13,imgBtnId14,imgBtnId15,
@@ -29,6 +28,7 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
     ImageButton previos = null;
     int yPrevios,xPrevios;
     Button Lenguajes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -38,9 +38,13 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
         this.dificultad = extras.getInt("Dificultad");
         Lenguajes = (Button) findViewById(R.id.button8);
         Lenguajes.setOnClickListener(this);
-        _score = (TextView) findViewById(R.id.textView3);
-        _score.setText("Score:");
+        _regex = (TextView) findViewById(R.id.textView3);
         GenREGEX = "";
+
+        this._btnhelp = (Button) findViewById(R.id.help);
+        this._btnhelp.setOnClickListener(this);
+
+        this._tvscore = (TextView) findViewById(R.id.score);
 
         imgBtnId00 = (ImageButton) findViewById(R.id.imageButton00);
         imgBtnId01 = (ImageButton) findViewById(R.id.imageButton01);
@@ -109,6 +113,9 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
 
 
         switch (v.getId()){
+            case R.id.help:
+                printRegex();
+                break;
             case R.id.imageButton00:
                 SelBoton(imgBtnId00,0,0);
                 break;
@@ -200,7 +207,8 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
             pTVText = pTVText + genOut[i] +"\n";
         }
         this.GenREGEX = genOut[0];
-        this._score.setText(genOut[0]);
+        this._regexp = genOut[0];
+        //this._regex.setText(genOut[0]);
         txt.setText(pTVText);
         //System.out.println(genOut[0]);
     }
@@ -338,9 +346,7 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
 
                 // aqui falta el metodo de los grices
 
-                System.out.println(string);
                 if(match(string.replaceAll("\\(\\)",""),this.GenREGEX)) {
-                    System.out.println("MATCH");
                     addtoScore();
                 }
                 //TextView txt = (TextView) findViewById(R.id.Salida);
@@ -354,15 +360,14 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
 
     }
 
+    public void printRegex(){
+        this._regex.setText(this._regexp);
+    }
+
     public boolean match(String pUserREGEX,String pGenREGEX){
-
-
-        this._score.setText("->" + pGenREGEX);
-
         if(pUserREGEX.equals(pGenREGEX))
             return true;
         else{
-            this._score.setText("FAILED");
             return false;
         }
 
@@ -370,7 +375,7 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
 
     public void addtoScore(){
         score = score + 1;
-        this._score.setText("Score"+ Integer.toString(score));
+        this._tvscore.setText("Puntos: "+ Integer.toString(score));
     }
 
 

@@ -31,23 +31,33 @@
             android:text="Falso" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/_langregexp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="64dp"
-            android:text="TextView"
+            android:text="Expresión y lenguajes"
+            android:textAlignment="center"
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="24sp"
-            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="21dp" />
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="21dp"
+            android:text="Puntos: "
+            android:textColor="@android:color/background_dark"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/button9"
+            android:layout_centerHorizontal="true"
+            android:text="Empezar" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

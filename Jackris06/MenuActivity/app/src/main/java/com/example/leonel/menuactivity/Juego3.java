@@ -3,6 +3,7 @@ package com.example.leonel.menuactivity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.transition.Visibility;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,13 +13,18 @@ import android.widget.TextView;
 import static com.example.leonel.menuactivity.generadorERYL.GeneradorJuego3;
 
 public class Juego3 extends AppCompatActivity implements View.OnClickListener {
+
+    int dificultad;
+
     TextView _score;
-    int _intscore;
-    String _actualregex;
     TextView _lang;
+
+    Button _empezar;
     Button _true;
     Button _false;
-    int dificultad;
+
+    int _intscore;
+    String _actualregex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +35,18 @@ public class Juego3 extends AppCompatActivity implements View.OnClickListener {
             this.dificultad = extras.getInt("Dificultad");
         _actualregex = "";
         _intscore = 0;
-        _score = (TextView) findViewById(R.id.textView5);
-        _lang = (TextView) findViewById(R.id.textView2);
+        _score = (TextView) findViewById(R.id._score);
+        _lang = (TextView) findViewById(R.id._langregexp);
 
         _true = (Button) findViewById(R.id.button9);
         _true.setOnClickListener(this);
 
         _false = (Button) findViewById(R.id.button10);
         _false.setOnClickListener(this);
+
+        _empezar = (Button) findViewById(R.id.start);
+        _empezar.setOnClickListener(this);
+
     }
 
 
@@ -44,10 +54,14 @@ public class Juego3 extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.button9:
-                getLang(1);
+                checkEntry(1);
+                //getLang(1);
                 break;
             case R.id.button10:
-                getLang(0);
+                checkEntry(0);
+                break;
+            case R.id.start:
+                getFirst();
                 break;
         }
     }
@@ -60,16 +74,11 @@ public class Juego3 extends AppCompatActivity implements View.OnClickListener {
         for (int i  = 1; i < expr.length;i++){
             pTVText = pTVText + expr[i] +"\n";
         }
-        System.out.println(exp.toString());
-        System.out.println(pBool);
-        System.out.println(bool);
-        this._lang.setText(pTVText);
         if(_actualregex.equals("")) {
             System.out.println("EMPTY");
             _actualregex = expr[0].substring(1);
         }
         else if(pBool==1 &&  bool == 1) {
-           System.out.println("CASE1");
             _intscore = _intscore + 1;
             _actualregex = expr[0].substring(1);
        }else if (pBool == 0 && bool == 0){
@@ -77,7 +86,6 @@ public class Juego3 extends AppCompatActivity implements View.OnClickListener {
             _actualregex = expr[0].substring(1);
         }
         else if(pBool == 1 && bool == 0){
-            System.out.println("CASE2");
             _actualregex = expr[0].substring(1);
         }else if(pBool == 0 && bool == 1){
             _actualregex = expr[0].substring(1);
@@ -85,5 +93,24 @@ public class Juego3 extends AppCompatActivity implements View.OnClickListener {
         _score.setText(Integer.toString(_intscore));
 
 
+    }
+
+    private void checkEntry(int pBool){
+
+        String expr = _actualregex.substring(0).replaceAll("#","\n");
+        int bool = Character.getNumericValue(_actualregex.charAt(0));
+        if (pBool == bool){
+            _intscore = _intscore + 1;
+            _score.setText("Puntos: "+ _intscore);
+        }
+        _actualregex = generadorERYL.GeneradorJuego3(this.dificultad);
+        this._lang.setText(_actualregex.substring(0).replaceAll("#","\n"));
+    }
+
+    private void getFirst(){
+        this._intscore = 0;
+        this._empezar.setVisibility(View.GONE);
+        this._actualregex = generadorERYL.GeneradorJuego3(this.dificultad);
+        _lang.setText(_actualregex.substring(0).replaceAll("#","\n"));
     }
 }

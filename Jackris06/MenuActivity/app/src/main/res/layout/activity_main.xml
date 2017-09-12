@@ -109,6 +109,16 @@
             android:background="@color/colorPrimary"
             android:text="Salir"
             android:textColor="@android:color/background_light" />
+
+        <TextView
+            android:id="@+id/Difficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Medio"
+            android:textColor="@android:color/background_dark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

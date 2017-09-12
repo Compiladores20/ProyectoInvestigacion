@@ -14,25 +14,24 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:layout_marginStart="24dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/Salida" />
+            android:layout_alignParentStart="true"
+            android:layout_toEndOf="@+id/Salida"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
 
 
         <TableLayout
-            android:layout_width="322dp"
-            android:layout_height="503dp"
+            android:id="@+id/tableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="bottom"
             tools:layout_editor_absoluteX="31dp"
             tools:layout_editor_absoluteY="16dp"
-            android:layout_marginStart="14dp"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/button8"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="71dp"
-            android:id="@+id/tableLayout">
+            android:layout_marginStart="55dp">
 
 
             <TableRow
@@ -204,15 +203,16 @@
         <TextView
             android:id="@+id/Salida"
             android:layout_width="232dp"
-            android:layout_height="134dp"
-            android:maxLines="10"
-            android:text="salida"
-            tools:layout_editor_absoluteX="83dp"
-            tools:layout_editor_absoluteY="10dp"
-            android:layout_marginStart="35dp"
-            android:layout_alignTop="@+id/tableLayout"
+            android:layout_height="165dp"
             android:layout_alignStart="@+id/tableLayout"
-            android:layout_marginTop="71dp" />
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="69dp"
+            android:maxLines="10"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="10dp" />
 
         <Button
             android:id="@+id/button8"
@@ -221,10 +221,31 @@
             android:text="Lenguajes"
             tools:layout_editor_absoluteX="400dp"
             tools:layout_editor_absoluteY="400dp"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="107dp"
             android:layout_below="@+id/Salida"
-            android:layout_alignStart="@+id/Salida" />
+            android:layout_alignEnd="@+id/tableLayout"
+            android:layout_marginEnd="19dp" />
+
+        <Button
+            android:id="@+id/help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="57dp"
+            android:text="Ayuda"
+            android:layout_alignBaseline="@+id/button8"
+            android:layout_alignBottom="@+id/button8"
+            android:layout_alignStart="@+id/tableLayout" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="259dp"
+            android:text="Puntos:"
+            android:textColor="@android:color/background_dark"
+            android:textSize="18sp" />
 
     </RelativeLayout>
 
