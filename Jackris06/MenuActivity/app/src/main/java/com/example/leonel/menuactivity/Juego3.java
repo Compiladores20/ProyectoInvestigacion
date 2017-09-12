@@ -104,13 +104,13 @@ public class Juego3 extends AppCompatActivity implements View.OnClickListener {
             _score.setText("Puntos: "+ _intscore);
         }
         _actualregex = generadorERYL.GeneradorJuego3(this.dificultad);
-        this._lang.setText(_actualregex.substring(0).replaceAll("#","\n"));
+        this._lang.setText(_actualregex.substring(1).replaceAll("#","\n"));
     }
 
     private void getFirst(){
         this._intscore = 0;
         this._empezar.setVisibility(View.GONE);
         this._actualregex = generadorERYL.GeneradorJuego3(this.dificultad);
-        _lang.setText(_actualregex.substring(0).replaceAll("#","\n"));
+        _lang.setText(_actualregex.substring(1).replaceAll("#","\n"));
     }
 }
