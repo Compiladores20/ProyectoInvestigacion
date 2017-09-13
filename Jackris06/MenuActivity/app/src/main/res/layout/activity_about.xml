@@ -205,15 +205,15 @@
             android:id="@+id/Salida"
             android:layout_width="232dp"
             android:layout_height="165dp"
-            android:layout_alignStart="@+id/tableLayout"
-            android:layout_below="@+id/textView3"
             android:layout_marginTop="69dp"
             android:maxLines="10"
             android:textAlignment="center"
             android:textColor="@android:color/background_dark"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="83dp"
-            tools:layout_editor_absoluteY="10dp" />
+            tools:layout_editor_absoluteY="10dp"
+            android:layout_below="@+id/textView3"
+            android:layout_alignStart="@+id/tableLayout" />
 
         <Button
             android:id="@+id/button8"
@@ -222,20 +222,18 @@
             android:text="Lenguajes"
             tools:layout_editor_absoluteX="400dp"
             tools:layout_editor_absoluteY="400dp"
-            android:layout_marginTop="107dp"
+            android:layout_marginTop="111dp"
             android:layout_below="@+id/Salida"
-            android:layout_alignEnd="@+id/tableLayout"
-            android:layout_marginEnd="19dp" />
+            android:layout_toEndOf="@+id/textView3" />
 
         <Button
             android:id="@+id/help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="57dp"
             android:text="Ayuda"
-            android:layout_alignBaseline="@+id/button8"
-            android:layout_alignBottom="@+id/button8"
-            android:layout_alignStart="@+id/tableLayout" />
+            android:layout_above="@+id/tableLayout"
+            android:layout_toStartOf="@+id/button8"
+            android:layout_marginEnd="16dp" />
 
         <TextView
             android:id="@+id/score"
@@ -247,6 +245,15 @@
             android:text="Puntos:"
             android:textColor="@android:color/background_dark"
             android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/_mas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tableLayout"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="32dp"
+            android:text="más" />
 
     </RelativeLayout>
 

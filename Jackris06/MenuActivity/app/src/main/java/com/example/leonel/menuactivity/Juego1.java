@@ -29,12 +29,14 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
     ImageButton previos = null;
     int yPrevios,xPrevios;
     Button Lenguajes;
-
+    Button _mas;
+    TextView _txt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
         Bundle extras = getIntent().getExtras();
         this.dificultad = extras.getInt("Dificultad");
         Lenguajes = (Button) findViewById(R.id.button8);
@@ -42,8 +44,12 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
         _regex = (TextView) findViewById(R.id.textView3);
         GenREGEX = "";
 
+        _txt = (TextView) findViewById(R.id.Salida);
         this._btnhelp = (Button) findViewById(R.id.help);
         this._btnhelp.setOnClickListener(this);
+
+        this._mas = (Button) findViewById(R.id._mas);
+        this._mas.setOnClickListener(this);
 
         this._tvscore = (TextView) findViewById(R.id.score);
 
@@ -116,6 +122,9 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
         switch (v.getId()){
             case R.id.help:
                 printRegex();
+                break;
+            case R.id._mas:
+                moreregexp();
                 break;
             case R.id.imageButton00:
                 SelBoton(imgBtnId00,0,0);
@@ -201,7 +210,6 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
     }
 
     public void getLang(){
-        TextView txt = (TextView) findViewById(R.id.Salida);
         String[] genOut = generadorERYL.GeneradorJuego1(this.dificultad).split("#");
         String pTVText = "";
         for (int i  = 1; i < genOut.length;i++){
@@ -210,7 +218,7 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
         this.GenREGEX = genOut[0];
         this._regexp = genOut[0];
         //this._regex.setText(genOut[0]);
-        txt.setText(pTVText);
+        this._txt.setText(pTVText);
         //System.out.println(genOut[0]);
     }
 
@@ -445,6 +453,14 @@ public class Juego1 extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
-
+    public void moreregexp(){
+        String lang =  generadorERYL.GeneradorJuego2(this._regexp);
+        String[] langArray = lang.split("#");
+        String output = "";
+        for (int i = 1; i < langArray.length; i++){
+            output = output +langArray[i] + "\n";
+        }
+        this._txt.setText(output);
+    }
 }
 
